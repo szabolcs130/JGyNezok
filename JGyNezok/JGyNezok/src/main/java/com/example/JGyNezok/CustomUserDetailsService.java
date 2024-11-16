@@ -15,7 +15,7 @@ import java.util.Collection;
 @Transactional
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
-    private UserRepository userRepo;		// Dependency injection
+    private UserRepository userRepo;
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         User user = userRepo.findByEmail(userName).orElseThrow(() -> new UsernameNotFoundException("Email " + userName + " not found"));
