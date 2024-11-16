@@ -5,6 +5,9 @@
             <a th:href="@{/login}">Login</a>
         </span>
         <span sec:authorize="isAnonymous()">
+            <a th:href="@{/}">Home</a>
+        </span>
+        <span sec:authorize="isAnonymous()">
             <a th:href="@{/regisztral}">Regisztrál</a>
         </span>
         <span sec:authorize="isAnonymous()">
