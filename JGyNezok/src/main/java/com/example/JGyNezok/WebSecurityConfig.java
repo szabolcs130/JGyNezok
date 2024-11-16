@@ -15,16 +15,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, proxyTargetClass = true)
-// Class WebSecurityConfigurerAdapter:
-//	Provides a convenient base class for creating a WebSecurityConfigurer instance.
-//	The implementation allows customization by overriding methods.
-// 	https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/configuration/WebSecurityConfigurerAdapter.html
 public class WebSecurityConfig {
     @Autowired
-    private UserDetailsService customUserDetailsService;	// Dependency injection
+    private UserDetailsService customUserDetailsService;
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-// a jelszó kódolás módjának megadása:
+
         auth.userDetailsService(customUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
     @Bean
@@ -32,7 +28,7 @@ public class WebSecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/resources/**", "/").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/resources/**", "/", "/regisztral", "/regisztral_feldolgoz").permitAll()
+                .antMatchers("/resources/**", "/", "/regisztral", "/regisztral_feldolgoz","/valaszt").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().defaultSuccessUrl("/home").permitAll()

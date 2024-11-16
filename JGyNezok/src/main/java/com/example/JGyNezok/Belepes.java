@@ -23,7 +23,6 @@ public class Belepes implements Serializable {
 
     private LocalTime idopont;
 
-    // Getters and setters
     public BelepesId getId() {
         return id;
     }
