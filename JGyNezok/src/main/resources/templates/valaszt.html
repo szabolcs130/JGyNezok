@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futball mérkőzések</title>
+</head>
+<body>
+<h1>Futball mérkőzéseken részt vevők</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Időpont</th>
+        <th>Dátum</th>
+        <th>Kezdés</th>
+        <th>Belepő</th>
+        <th>Típus</th>
+        <th>Nev</th>
+        <th>Berletes</th>
+        <th>Férfi</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="belepes : ${belepesek}">
+        <tr>
+            <td th:text="${belepes.getIdopont()}"></td>
+            <td th:text="${belepes.getMeccs().getDatum()}"></td>
+            <td th:text="${belepes.getMeccs().getKezdes()}"></td>
+            <td th:text="${belepes.getMeccs().getBelepo()}"></td>
+            <td th:text="${belepes.getMeccs().getTipus()}"></td>
+            <td th:text="${belepes.getNezo().getNev()}"></td>
+            <td th:text="${belepes.getNezo().getBerletes()}"></td>
+            <td th:text="${belepes.getNezo().getFerfi()}"></td>
+
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>
