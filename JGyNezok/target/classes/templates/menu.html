@@ -16,9 +16,11 @@
 
         <span sec:authorize="isAnonymous()">
             <a th:href="@{/kapcsolat}">Kapcsolat</a>
-            <a th:href="@{/kapcsolat}">kapcsolat_feldolgoz</a>
         </span>
 
+        <span sec:authorize="isAnonymous()">
+            <a th:href="@{/messageLekerdezes}">Üzenetek</a>
+        </span>
 
 
         <span sec:authorize="isAuthenticated()">
