@@ -9,6 +9,7 @@
 <div th:insert="menu"></div>
 <h1>Csak az Admin láthatja ezt az oldalt</h1>
 <h1>Üzenetek</h1>
+
 <table border="1">
   <thead>
   <tr>
@@ -19,14 +20,16 @@
   </tr>
   </thead>
   <tbody>
-  <th:block th:each="m : ${m}">
+  <th:block th:each="message : ${m}">
     <tr>
-      <td th:text="${m.getId()}"></td>
-      <td th:text="${m.getName()}"></td>
-      <td th:text="${m.getEmail()}"></td>
-      <td th:text="${m.getMessage()}"></td>
+      <td th:text="${message.id}"></td>
+      <td th:text="${message.name}"></td>
+      <td th:text="${message.email}"></td>
+      <td th:text="${message.message}"></td>
 
     </tr>
+  </th:block>
+  </tbody>
   </th:block>
   </tbody>
 </table>

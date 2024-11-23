@@ -1,6 +1,8 @@
 package com.example.JGyNezok;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="message")
@@ -12,6 +14,9 @@ public class Message {
     private String name;
     private String email;
     private String message;
+
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
 
     // Getters and Setters
     public Integer getId() {
@@ -45,4 +50,7 @@ public class Message {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public LocalDateTime getCreatedAt() {return createdAt;}
+    public void setCreatedAt(LocalDateTime createdAt) {this.createdAt = createdAt;}
 }
