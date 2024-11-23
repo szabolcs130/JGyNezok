@@ -2,8 +2,8 @@ package com.example.JGyNezok;
 
 import com.example.JGyNezok.ezeklehetfeleslegesekvoltak.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,11 +73,28 @@ public class HomeController {
     }
 
     @PostMapping("/kapcsolat_feldolgoz")
-    public String kapcsolatFeldolgoz(@ModelAttribute("messageForm") Message message, Model model) {
+    public String kapcsolatFeldolgoz(@ModelAttribute("messageForm") Message message) {
 
+        boolean isRegistered = false;
+
+        String inputEmail = message.getEmail() != null ? message.getEmail().trim().toLowerCase() : "";
+
+        //ez a komment emléket állít az elvesztegetett 45 percnek egy typo miatt
+
+        for (User u: userRepo.findAll()) {
+            String dbemail = u.getEmail().trim().toLowerCase();
+            if (dbemail.equals(inputEmail)) {
+                isRegistered = true;
+                break;
+            }
+        }
+        if(!isRegistered) {
+            message.setName("Vendég");
+        }
         messageRepository.save(message);
         return "kapcsolat";
     }
+
     @GetMapping("/message_error")
     public String message_error() {return "message_error";}
     @GetMapping("/message_success")
