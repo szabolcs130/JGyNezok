@@ -2,6 +2,8 @@ package com.example.JGyNezok;
 
 import com.example.JGyNezok.ezeklehetfeleslegesekvoltak.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +56,39 @@ public class HomeController {
         model.addAttribute("reg", new User());
         return "regisztral";
     }
+
+    //kapcsolat oldal : 11.23.
+    @Autowired
+    private MessageRepository messageRepository;
+
+    @GetMapping("/kapcsolat")
+    public String kapcsolat(Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = (authentication != null && authentication.isAuthenticated()) ? authentication.getName() : "Vendég";
+
+        Message messageForm = new Message();
+        messageForm.setName(name);
+
+        model.addAttribute("messageForm", messageForm);
+        return "kapcsolat";
+    }
+
+    @PostMapping("/kapcsolat_feldolgoz")
+    public String kapcsolatFeldolgoz(@ModelAttribute Message message, Model model) {
+        try{
+        messageRepository.save(message);
+        model.addAttribute("successMessage", "Üzenet sikeresen elküldve");
+        return "message_success";
+        }
+        catch(Exception e){
+            return "message_error";
+        }
+    }
+    @GetMapping("/message_error")
+    public String message_error() {return "message_error";}
+    @GetMapping("/message_success")
+    public String message_success() {return "message_success";}
 
     @Autowired
     private UserRepository userRepo;

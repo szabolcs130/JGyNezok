@@ -28,7 +28,7 @@ public class WebSecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/resources/**", "/").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/resources/**", "/", "/regisztral", "/regisztral_feldolgoz","/valaszt").permitAll()
+                .antMatchers("/resources/**", "/", "/regisztral", "/regisztral_feldolgoz","/valaszt", "/kapcsolat", "/kapcsolat_feldolgoz").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().defaultSuccessUrl("/home").permitAll()
