@@ -64,26 +64,19 @@ public class HomeController {
     @GetMapping("/kapcsolat")
     public String kapcsolat(Model model) {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        /*Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = (authentication != null && authentication.isAuthenticated()) ? authentication.getName() : "Vendég";
+*/
 
-        Message messageForm = new Message();
-        messageForm.setName(name);
-
-        model.addAttribute("messageForm", messageForm);
+        model.addAttribute("messageForm", new Message());
         return "kapcsolat";
     }
 
     @PostMapping("/kapcsolat_feldolgoz")
-    public String kapcsolatFeldolgoz(@ModelAttribute Message message, Model model) {
-        try{
+    public String kapcsolatFeldolgoz(@ModelAttribute("messageForm") Message message, Model model) {
+
         messageRepository.save(message);
-        model.addAttribute("successMessage", "Üzenet sikeresen elküldve");
-        return "message_success";
-        }
-        catch(Exception e){
-            return "message_error";
-        }
+        return "kapcsolat";
     }
     @GetMapping("/message_error")
     public String message_error() {return "message_error";}
