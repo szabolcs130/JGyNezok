@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -61,12 +62,15 @@ public class HomeController {
     @Autowired
     private MessageRepository messageRepository;
 
+    @GetMapping("/messageLekerdezes")
+    public String messageLekerdez(Model model) {
+        List<Message> messageList = messageRepository.findAll();
+        model.addAttribute("m", messageList);
+        return "messageLekerdezes";
+    }
+
     @GetMapping("/kapcsolat")
     public String kapcsolat(Model model) {
-
-        /*Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String name = (authentication != null && authentication.isAuthenticated()) ? authentication.getName() : "Vendég";
-*/
 
         model.addAttribute("messageForm", new Message());
         return "kapcsolat";

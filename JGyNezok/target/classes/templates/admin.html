@@ -8,6 +8,27 @@
 <div th:text="${uzenet}"></div>
 <div th:insert="menu"></div>
 <h1>Csak az Admin láthatja ezt az oldalt</h1>
-<h1>eper</h1>
+<h1>Üzenetek</h1>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Név</th>
+    <th>E-mail</th>
+    <th>Üzenet tartalma</th>
+  </tr>
+  </thead>
+  <tbody>
+  <th:block th:each="m : ${m}">
+    <tr>
+      <td th:text="${m.getId()}"></td>
+      <td th:text="${m.getName()}"></td>
+      <td th:text="${m.getEmail()}"></td>
+      <td th:text="${m.getMessage()}"></td>
+
+    </tr>
+  </th:block>
+  </tbody>
+</table>
 </body>
 </html>

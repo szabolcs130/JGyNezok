@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Üzenetek</title>
+</head>
+<body>
+<div th:insert="menu"></div>
+<h1>Üzenetek</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Név</th>
+        <th>E-mail</th>
+        <th>Üzenet tartalma</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="message : ${m}">
+        <tr>
+            <td th:text="${message.id}"></td>
+            <td th:text="${message.name}"></td>
+            <td th:text="${message.email}"></td>
+            <td th:text="${message.message}"></td>
+
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>
