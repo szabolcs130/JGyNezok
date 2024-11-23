@@ -15,6 +15,7 @@
         <th>Név</th>
         <th>E-mail</th>
         <th>Üzenet tartalma</th>
+        <th>Dátum</th>
     </tr>
     </thead>
     <tbody>
@@ -24,7 +25,7 @@
             <td th:text="${message.name}"></td>
             <td th:text="${message.email}"></td>
             <td th:text="${message.message}"></td>
-
+            <td th:text="${message.createdAt}"></td>
         </tr>
     </th:block>
     </tbody>
