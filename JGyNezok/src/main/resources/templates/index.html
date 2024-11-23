@@ -2,14 +2,92 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       lang="hu">
+
 <head>
   <title>Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
+<style>
+
+  body {
+    background-color: whitesmoke;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: space-around;
+    background-color: #1E7B36;
+    padding: 15px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .menu a:hover {
+    background-color: #218838;
+  }
+
+  .menu a:before {
+    content: "\26BD";
+    margin-right: 8px;
+    font-size: 20px;
+  }
+
+  .menu span.sec-authorization {
+    color: #FFD700;
+    font-weight: bold;
+  }
+
+  .menu span {
+    display: inline-block;
+  }
+
+  .menu span {
+    border-left: 1px solid #fff;
+    padding-left: 20px;
+  }
+
+  .menu span:first-child {
+    border-left: none;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 36px;
+    color: #1E7B36;
+    padding-top: 50px;
+  }
+
+  h3 {
+    font-size: 24px;
+    color: #1E7B36;
+    text-align: center;
+  }
+
+  .menu span[sec\:authorize="isAnonymous()"] {
+    display: inline-block;
+  }
+
+</style>
+
 <body>
 <div th:text="${uzenet}"></div>
 
 <div th:insert="menu"></div>
 <h1>Futball mérkőzések</h1>
-<h1>Teszt commit</h1>
+
 </body>
 </html>
